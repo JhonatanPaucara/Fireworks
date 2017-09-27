@@ -24,19 +24,14 @@ function Firework(){
 
     //Creamos la funcion para eliminar la particula original
 
-    this.done =function(){
-        if (this.rebentada && this.particulas.length === 0){
-            return true;
-        } else{
-            return false;
-        }
+    this.done =function() {
+        return (this.rebentada && this.particulas.length === 0);
     }
 
     //Creamos la función de exlosion
     this.explotar = function(){
-        //definimos el punto de origen de las chispitas
-        var t=i*2*3.1416/100;
         for (var i = 0; i < 100; i++){//creamos 100 chispitas
+            var t=i*2*3.1416/100; //definimos el punto de origen de las chispitas
             // Ecuacion del corazon
             var velx=(16 * pow(sin(t), 3)) * -1;
             var vely=(13 * cos(t) - 5 * cos(t * 2) - 2 * cos(t * 3) - cos(t * 4)) * -1;
