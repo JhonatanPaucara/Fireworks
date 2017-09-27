@@ -3,7 +3,7 @@ function Firework(){
     this.chispita = new Particle(random(width),height,this.color,false);//crea una nueva particula
     this.rebentada = false;
     this.particulas = [];
-    
+
     this.update = function(){//este update es de la funcion Firework
         if(!this.rebentada){
             this.chispita.applyForce(gravedad);//Aplicamos la gravedad a la chispita
@@ -13,7 +13,7 @@ function Firework(){
                 this.explotar();
             }
         }
-        for (var i = this.particulas.length-1; i >= 0 ; i--){   
+        for (var i = this.particulas.length-1; i >= 0 ; i--){
             this.particulas[i].applyForce(gravedad);
             this.particulas[i].update();
             if (this.particulas[i].done()){
@@ -34,9 +34,10 @@ function Firework(){
 
     //Creamos la función de exlosion
     this.explotar = function(){
+        //definimos el punto de origen de las chispitas
+        var t=i*2*3.1416/100;
         for (var i = 0; i < 100; i++){//creamos 100 chispitas
-            //definimos el punto de origen de las chispitas
-            var t=i*2*3.1416/100;
+            // Ecuacion del corazon
             var velx=(16 * pow(sin(t), 3)) * -1;
             var vely=(13 * cos(t) - 5 * cos(t * 2) - 2 * cos(t * 3) - cos(t * 4)) * -1;
             var p = new Particle(this.chispita.pos.x, this.chispita.pos.y,this.color,true,velx/4,vely/4);
@@ -45,10 +46,11 @@ function Firework(){
     }
 
     this.show = function(){//este show es de la funcion Firework
-        if(!this.rebentada)
-            this.chispita.show();//Mostramos chispita
-        for (var i = 0; i < this.particulas.length; i++){   
+        if(!this.rebentada) {
+           this.chispita.show();//Mostramos chispita
+        }
+        for (var i = 0; i < this.particulas.length; i++){
             this.particulas[i].show();
-        } 
+        }
     }
 }
